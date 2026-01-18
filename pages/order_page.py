@@ -69,6 +69,7 @@ class OrderPage(BasePage):
 
     @allure.step('Оформление заказа и сохранение номера из счетчика с заказами за всё время')
     def check_total_counter(self):
+        self.wait_for_builder_page()
         self.open_order_page()
         self.wait_feed_open()
         self.save_all_orders_number()
