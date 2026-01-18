@@ -1,5 +1,4 @@
 import allure
-from selenium.webdriver.support import expected_conditions as EC
 from locators.order_locators import OrderLocators
 from locators.builder_page_locators import BuilderPageLocators
 from locators.up_menu_locators import UpMenuLocators

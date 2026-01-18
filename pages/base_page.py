@@ -24,28 +24,10 @@ class BasePage:
     @allure.step('Получить текст элемента')
     def get_text(self, locator):
         return self.find_element(locator).text
-    
-    @allure.step('Вернуть атрибут элемента')
-    def get_attribute(self, locator, attribute):
-        return self.find_element(locator).get_attribute(attribute)
-
-    @allure.step('Скролл до элемента')
-    def scroll_to_element(self, locator):
-        element = self.find_element(locator)
-        self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
     @allure.step('Ввести текст в поле ввода')
     def send_keys(self, locator, text):
         self.find_element(locator).send_keys(text)
-
-    @allure.step('Подождать до открытия определенного количества окон')
-    def wait_until_several_windows_open(self, number):
-        return self.wait.until(EC.number_of_windows_to_be(number))
-
-    @allure.step('Переключиться на другое окно')
-    def switch_to_another_window(self):
-        self.wait_until_several_windows_open(2)
-        self.driver.switch_to.window(self.driver.window_handles[-1])
     
     @allure.step('Ожидание, что URL содержит текст')
     def wait_for_url_contains(self, text):
@@ -65,13 +47,7 @@ class BasePage:
 
     @allure.step('Перетащить элемент {source_locator} на элемент {target_locator}')
     def drag_and_drop(self, source_locator, target_locator):
-        """
-        Выполняет drag and drop
-        
-        Args:
-            source_locator: локатор элемента который перетаскиваем
-            target_locator: локатор элемента куда перетаскиваем
-        """
+     
         source_element = self.find_element(source_locator)
         target_element = self.find_element(target_locator)
         

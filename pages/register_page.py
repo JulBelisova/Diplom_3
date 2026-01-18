@@ -1,5 +1,4 @@
 import allure
-from selenium.webdriver.support import expected_conditions as EC
 from locators.register_locators import RegisterLocators
 from locators.login_locators import LoginLocators
 from .base_page import BasePage

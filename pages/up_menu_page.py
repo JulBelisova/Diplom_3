@@ -1,5 +1,4 @@
 import allure
-from selenium.webdriver.support import expected_conditions as EC
 from locators.up_menu_locators import UpMenuLocators
 from .base_page import BasePage
 from url import *
