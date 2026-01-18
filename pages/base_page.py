@@ -1,6 +1,7 @@
 import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 
 class BasePage:
     
@@ -53,3 +54,24 @@ class BasePage:
     @allure.step('Открыть страницу по URL')
     def open_page(self, url):
         self.driver.get(url)
+
+    @allure.step('Подождать до исчезновения окна')
+    def wait_until_element_invisible(self, locator):
+        self.wait.until(EC.invisibility_of_element_located(locator))
+
+    @allure.step('Перетащить элемент {source_locator} на элемент {target_locator}')
+    def drag_and_drop(self, source_locator, target_locator):
+        """
+        Выполняет drag and drop
+        
+        Args:
+            source_locator: локатор элемента который перетаскиваем
+            target_locator: локатор элемента куда перетаскиваем
+        """
+        source_element = self.find_element(source_locator)
+        target_element = self.find_element(target_locator)
+        
+        actions = ActionChains(self.driver)
+        actions.drag_and_drop(source_element, target_element).perform()
+        
+        return True
