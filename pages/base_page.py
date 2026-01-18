@@ -13,6 +13,10 @@ class BasePage:
     def find_element(self, locator):
         return self.wait.until(EC.visibility_of_element_located(locator))
     
+    @allure.step('Ожидание кликабельности элемента')
+    def find_element_clickable(self, locator):
+        return self.wait.until(EC.element_to_be_clickable(locator))
+    
     @allure.step('Кликнуть на элемент')
     def click_element(self, locator):
         self.find_element(locator).click()

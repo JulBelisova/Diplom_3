@@ -2,8 +2,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators.login_locators import LoginLocators
+from locators.builder_page_locators import BuilderPageLocators
 from .base_page import BasePage
 import allure
+import time
 
 class LoginPage(BasePage):
     
@@ -23,9 +25,12 @@ class LoginPage(BasePage):
     def click_enter_button(self):
         self.click_element(LoginLocators.sing_in)
 
+
     @allure.step('Войти с email: {email} и паролем')
     def login(self, email, password):
 
         self.enter_email(email)
         self.enter_password(password)
         self.click_enter_button()
+
+        

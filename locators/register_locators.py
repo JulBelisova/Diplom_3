@@ -7,5 +7,4 @@ class RegisterLocators:
     name = [By.XPATH, ".//label[text()='Имя']/following-sibling::input"]
     email = [By.XPATH, ".//label[text()='Email']/following-sibling::input"]
     password = [By.XPATH, ".//label[text()='Пароль']/following-sibling::input"]
-    to_sign_up = [By.CLASS_NAME, "button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_medium__3zxIa"]
-    
+    to_sign_up = [By.XPATH, ".//button[@class = 'button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_medium__3zxIa']"]

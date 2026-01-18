@@ -1,8 +1,10 @@
 import allure
 from selenium.webdriver.support import expected_conditions as EC
 from locators.register_locators import RegisterLocators
+from locators.login_locators import LoginLocators
 from .base_page import BasePage
 from url import *
+import time
 
 class RegisterPage(BasePage):
     
@@ -37,6 +39,14 @@ class RegisterPage(BasePage):
         """Нажимает кнопку регистрации"""
         self.click_element(RegisterLocators.to_sign_up)
 
+    @allure.step('Подождать пока загрузится страница входа')
+    def wait_for_login(self):
+        self.find_element_clickable(LoginLocators.email)
+
+    @allure.step('Подождать загрузку страницы')
+    def wait_for_login_page(self):
+        self.wait_for_url_contains("login")
+
     @allure.step('Регистрация пользователя')
     def register_user(self, user_data):
         self.click_account()
@@ -45,3 +55,5 @@ class RegisterPage(BasePage):
         self.enter_email(user_data["email"])
         self.enter_password(user_data["password"])
         self.click_register_button()
+        self.wait_for_login_page()
+        

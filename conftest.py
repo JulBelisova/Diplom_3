@@ -27,12 +27,12 @@ def driver(request):
     browser.quit()
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def test_user():
     """Генерирует данные пользователя один раз за сессию"""
     return TestDataGenerator.user_data()
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def registered_user(driver, test_user):
     """Регистрирует пользователя один раз за сессию"""
     from pages.register_page import RegisterPage
