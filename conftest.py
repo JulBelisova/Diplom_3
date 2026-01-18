@@ -16,7 +16,7 @@ def driver(request):
         options = ChromeOptions()
         service = ChromeService()
         browser = webdriver.Chrome(options=options, service=service)
-    else:  # firefox
+    else:  
         options = FirefoxOptions()
         service = FirefoxService()
         browser = webdriver.Firefox(options=options, service=service)
@@ -29,12 +29,10 @@ def driver(request):
 
 @pytest.fixture(scope="function")
 def test_user():
-    """Генерирует данные пользователя один раз за сессию"""
     return TestDataGenerator.user_data()
 
 @pytest.fixture(scope="function")
 def registered_user(driver, test_user):
-    """Регистрирует пользователя один раз за сессию"""
     from pages.register_page import RegisterPage
     
     register_page = RegisterPage(driver)
@@ -44,7 +42,6 @@ def registered_user(driver, test_user):
 
 @pytest.fixture(scope="function")
 def logged_in_user(driver, registered_user):
-    """Логинит пользователя перед каждым тестом"""
     from pages.login_page import LoginPage
     
     login_page = LoginPage(driver)

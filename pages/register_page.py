@@ -4,7 +4,6 @@ from locators.register_locators import RegisterLocators
 from locators.login_locators import LoginLocators
 from .base_page import BasePage
 from url import *
-import time
 
 class RegisterPage(BasePage):
     
@@ -21,22 +20,18 @@ class RegisterPage(BasePage):
 
     @allure.step('Заполнить поле имени: {name}')
     def enter_name(self, name):
-        """Заполняет поле имени"""
         self.send_keys(RegisterLocators.name, name)
     
     @allure.step('Заполнить поле email: {email}')
     def enter_email(self, email):
-        """Заполняет поле email"""
         self.send_keys(RegisterLocators.email, email)
         
     @allure.step('Заполнить поле пароля')
     def enter_password(self, password):
-        """Заполняет поле пароля"""
         self.send_keys(RegisterLocators.password, password)
 
     @allure.step('Нажать кнопку регистрации')
     def click_register_button(self):
-        """Нажимает кнопку регистрации"""
         self.click_element(RegisterLocators.to_sign_up)
 
     @allure.step('Подождать пока загрузится страница входа')

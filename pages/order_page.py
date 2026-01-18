@@ -68,7 +68,7 @@ class OrderPage(BasePage):
     def wait_for_cover_infa_to_disappear(self):
         self.wait_until_element_invisible(OrderLocators.cover_order_infa) 
 
-    @allure.step('Оформление заказа и сохранение номера из счетчика')
+    @allure.step('Оформление заказа и сохранение номера из счетчика с заказами за всё время')
     def check_total_counter(self):
         self.open_order_page()
         self.wait_feed_open()
@@ -85,4 +85,62 @@ class OrderPage(BasePage):
         self.wait_for_feed_page()
         self.wait_feed_open()
         element = self.get_current_orders_number()
+        return element
+    
+    @allure.step('Сохранить количество заказов за сегодня')
+    def save_today_orders_number(self):
+        text = self.get_text(OrderLocators.counter_today)
+        self.initial_count = int(text)
+        return self.initial_count
+    
+    @allure.step('Получить текущее количество заказов за сегодня')
+    def get_current_orders_number_today(self):
+        text = self.get_text(OrderLocators.counter_today)
+        return int(text)
+
+    @allure.step('Оформление заказа и сохранение номера из дневного счетчика')
+    def check_day_counter(self):
+        self.open_order_page()
+        self.wait_feed_open()
+        self.save_today_orders_number()
+        self.open_builder_page()
+        self.move_bun_to_the_builder()
+        self.click_order_button()
+        self.wait_for_cover_to_disappear()
+        self.wait_for_close_button()
+        self.click_close_order_info()
+        self.wait_for_cover_infa_to_disappear()
+        self.wait_for_builder_page()
+        self.open_order_page()
+        self.wait_for_feed_page()
+        self.wait_feed_open()
+        element = self.get_current_orders_number_today()
+        return element
+    
+
+    @allure.step('Сохранить номер заказа')
+    def save_order_number(self):
+        text = self.get_text(OrderLocators.number)
+        self.initial_count = int(text)
+        return self.initial_count
+    
+    @allure.step('Получить номер заказа из раздела "В работе')
+    def get_current_order_number_in_process(self):
+        text = self.get_text(OrderLocators.in_process)
+        return int(text)
+
+    @allure.step('Оформление заказа и появление номера в ленте заказов в разделе "В работе"')
+    def check_in_process(self):
+        self.move_bun_to_the_builder()
+        self.click_order_button()
+        self.wait_for_cover_to_disappear()
+        self.save_order_number()
+        self.wait_for_close_button()
+        self.click_close_order_info()
+        self.wait_for_cover_infa_to_disappear()
+        self.wait_for_builder_page()
+        self.open_order_page()
+        self.wait_for_feed_page()
+        self.wait_feed_open()
+        element = self.get_current_order_number_in_process()
         return element

@@ -5,7 +5,6 @@ from locators.login_locators import LoginLocators
 from locators.builder_page_locators import BuilderPageLocators
 from .base_page import BasePage
 import allure
-import time
 
 class LoginPage(BasePage):
     
