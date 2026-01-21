@@ -4,6 +4,7 @@ from locators.builder_page_locators import BuilderPageLocators
 from locators.up_menu_locators import UpMenuLocators
 from .base_page import BasePage
 from url import *
+import time
 
 class OrderPage(BasePage):
     

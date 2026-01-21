@@ -26,3 +26,4 @@ class TestOrder():
         current_number = order_page.check_in_process()
 
         assert current_number == order_page.initial_count
+      
